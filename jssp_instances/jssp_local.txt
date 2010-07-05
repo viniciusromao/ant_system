@@ -1,0 +1,2 @@
+http://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/flowshop1.txt
+http://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/jobshop1.txt

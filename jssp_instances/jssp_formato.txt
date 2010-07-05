@@ -1,0 +1,11 @@
+Formato dos Arquivos
+
+primeira linha ==> m (número de tarefas) n (número de máquinas)
+
+Demais linhas (uma para cada tarefa ou job i=1 a m)
+M0 t0 M1 t1 M2 t2 .... Mn tn
+
+onde:
+
+Mj = número da máquina-j
+tj = tempo que o Job-i gasta na máquina-j

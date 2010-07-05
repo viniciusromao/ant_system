@@ -1,0 +1,14 @@
+------------------------ Universidade Estadual do Ceara ------------------------
+----------------------- Mestrado Academico em Computacao -----------------------
+------------------------ Projeto e Analise de Algorimos ------------------------
+
+
+Implementacao da Meta-Heuristica Colonia de Formigas para o problema Job Shop
+Scheduling Problem (JSSP)
+
+
+Diretorios:
+mod	modelagem A&P
+src	codigo fonte
+test	codigo fonte dos testes unitarios
+jssp_instances 	instacias do problema
