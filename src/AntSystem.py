@@ -56,7 +56,11 @@ class AntSystem:
 			self.trail.append([0.0] * self.jsspInst.jobs)
 			for j in range(self.jsspInst.jobs):
 				self.trail[i][j] = self.trailMin
-		
+
+		# Initialize it with the worst possible value
+		self.bestSchedule = Schedule(self.jsspInst)
+		self.bestSchedule.makespan = sum(self.greedy)
+
 		random.seed(time.time())
 		return
 
@@ -129,7 +133,7 @@ class AntSystem:
 	def pheromoneAdd(self):
 		for sched in self.antScheds:
 			for i in range(len(sched.jobSched) - 1):
-				self.trail[sched.jobSched[i]][sched.jobSched[i+1]] += 1.0/sched.makespan
+				self.trail[sched.jobSched[i]][sched.jobSched[i+1]] += self.Q/sched.makespan
 		return
 
 
@@ -148,14 +152,10 @@ class AntSystem:
 		for s in self.antScheds:
 			if s.makespan < min.makespan:
 				min = s
-
-		if min < self.bestSchedule:
-			self.bestSchedule = Schedule(self.jsspInst)
-			self.bestSchedule.makespan = min.makespan
-			self.bestSchedule.jobSched = min.jobSched
-				
+		
+		if min.makespan < self.bestSchedule.makespan:
+			self.bestSchedule = min
 			
-
 
 
 

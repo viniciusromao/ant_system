@@ -50,10 +50,10 @@ class AntSystem_test (unittest.TestCase):
 	def testRunCompleteTour(self):
 		# Testing the presentation istance
 		#antSys = AntSystem("../jssp_instances/transparencia.txt")
-		#antSys = AntSystem("../jssp_instances/Car5.txt")
-		antSys = AntSystem("../jssp_instances/abz5.txt")
+		antSys = AntSystem("../jssp_instances/Car5.txt")
+		#antSys = AntSystem("../jssp_instances/abz5.txt", roh = 0.9)
 
-		antSys.runCompleteTour(2000)
+		antSys.runCompleteTour(3000)
 		
 		print "final solutions"
 		for i in range(len(antSys.antScheds)):
@@ -67,17 +67,20 @@ class AntSystem_test (unittest.TestCase):
 	def testFindBestJobSchedule(self):
 		antSys = AntSystem("../jssp_instances/abz5.txt")
 
-		for j in range(antSys.ants):
-			antSys.antTour()
-
-		print "Ant Schedules"
-		for i in range(len(antSys.antScheds)):
-			print "i: ", antSys.antScheds[i].makespan, antSys.antScheds[i].jobSched
-
-		print "\nBest solution"
-		antSys.findBestJobSchedule()
-		#print antSys.bestSchedule
-		#print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
+		for i in range(3):
+			antSys.antScheds = []
+			for j in range(antSys.ants):
+				antSys.antTour()
+			#antSys.trailUpdate()
+			antSys.findBestJobSchedule()
+			
+			print "Ant Schedules"
+			for i in range(len(antSys.antScheds)):
+				print "i: ", antSys.antScheds[i].makespan, antSys.antScheds[i].jobSched
+			
+			print "\nBest solution"
+			print antSys.bestSchedule
+			print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
 		return
 	
 	
