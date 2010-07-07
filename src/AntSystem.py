@@ -142,8 +142,8 @@ class AntSystem:
 			self.antScheds = []
 			for j in range(self.ants):
 				self.antTour()
-			self.trailUpdate()
 			self.findBestJobSchedule()
+			self.trailUpdate()
 		return
 
 
@@ -156,6 +156,10 @@ class AntSystem:
 		if min.makespan < self.bestSchedule.makespan:
 			self.bestSchedule = min
 			
+
+	def printTrailMatrix(self):
+		for i in range(self.jsspInst.jobs):
+			print self.trail[i]
 
 
 
