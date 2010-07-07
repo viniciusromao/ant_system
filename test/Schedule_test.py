@@ -68,7 +68,7 @@ class Schedule_test (unittest.TestCase):
 		self.assert_(sched.makespan == 26, "Makespan: %i" % sched.makespan)
 		
 		# Testing the Abz5 istance. Makespan value sent from e-mail list
-		jsspInst = JSSPInstance("../jssp_instances/abz5_ord.txt")
+		jsspInst = JSSPInstance("../jssp_instances/abz5.txt")
 		
 		sched = Schedule(jsspInst)
 		sched.addJob(7)
