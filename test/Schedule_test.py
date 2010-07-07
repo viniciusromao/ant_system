@@ -68,7 +68,7 @@ class Schedule_test (unittest.TestCase):
 		self.assert_(sched.makespan == 26, "Makespan: %i" % sched.makespan)
 		
 		# Testing the Abz5 istance. Makespan value sent from e-mail list
-		jsspInst = JSSPInstance("../jssp_instances/abz5.txt")
+		jsspInst = JSSPInstance("../jssp_instances/abz5_ord.txt")
 		
 		sched = Schedule(jsspInst)
 		sched.addJob(7)
@@ -82,6 +82,20 @@ class Schedule_test (unittest.TestCase):
 		sched.addJob(1)
 		sched.addJob(3)
 		self.assert_(sched.makespan == 1544, "Makespan: %i" % sched.makespan)
+		
+		# Prof. Valdisio said that this is the best known makespan: 1544. But we found 1731.
+		sched = Schedule(jsspInst)
+		sched.addJob(5)
+		sched.addJob(9)
+		sched.addJob(3)
+		sched.addJob(4)
+		sched.addJob(6)
+		sched.addJob(2)
+		sched.addJob(7)
+		sched.addJob(0)
+		sched.addJob(1)
+		sched.addJob(8)
+		self.assert_(sched.makespan == 1731, "Makespan: %i" % sched.makespan)
 		
 		# Testing the Car5 istance. Makespan value sent from e-mail list
 		jsspInst = JSSPInstance("../jssp_instances/Car5.txt")
