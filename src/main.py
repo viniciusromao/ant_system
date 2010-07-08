@@ -8,6 +8,11 @@ from AntSystem import *
 # Command line options
 # Quantity of iterations
 iterations = 0
+# Parameter System used in pheromone increase
+q = 2.0
+# Ants multiplicative factor
+aX = 2
+
 jsspFile = ""
 verbose = False
 
@@ -18,10 +23,14 @@ command: main [-h -n] <JSSP Instance file>
 params:
 	-h Help
 	-n Interations
+	-Q Parameter System (see Paper)
+	-a Multiplicative factor of ants. For a = 2, ants = 2 * jobs
 	-v Verbose
 
 example:
 	./main.py -n 200 ../jssp_instances/abz5.txt 
+
+	./main.py -a 3 -Q 10 -n 200 ../jssp_instances/abz5.txt
 """
 
 
@@ -29,7 +38,7 @@ example:
 
 # Command line options
 try:
-	opts, args = getopt.getopt(sys.argv[1:], "hn:v")
+	opts, args = getopt.getopt(sys.argv[1:], "hn:Q:a:v")
 except getopt.GetoptError, err:
 	# print help information and exit:
 	print str(err)
@@ -51,6 +60,10 @@ else:
 for o, a in opts:
 	if o == "-n":
 		iterations = int(a)
+	elif o == "-Q":
+		q = float(a)
+	elif o == "-a":
+		aX = float(a)
 	elif o == "-v":
 		verbose = True
 	else:
@@ -58,7 +71,7 @@ for o, a in opts:
 		sys.exit(2)
 
 # Running Ant System Heuristic
-antSys = AntSystem(jsspFile)
+antSys = AntSystem(jsspFile, Q=q, antX=aX)
 
 antSys.runCompleteTour(iterations)
 

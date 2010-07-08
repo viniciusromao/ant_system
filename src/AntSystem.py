@@ -36,17 +36,17 @@ class AntSystem:
 	# Selects the strategy to the pheromone increase: 0 - func pheromoneAdd, 1 - func pheromoneAddElitist (default)
 	pheromoneStrategy = 0
 
-	def __init__(self, fileName, alpha = 1, beta = 1, roh = 0.7, Q = 2.0, pheromoneStrategy = 1):
+	def __init__(self, fileName, alpha = 1, beta = 1, roh = 0.7, Q = 2.0, antX = 2, pheromoneStrategy = 1):
 		# Initialize default values.
 		self.antScheds=[]
 
 		self.alpha = alpha
 		self.beta = beta
 		self.roh = roh
-		self.Q = Q
+		self.Q = float(Q)
 		self.Qini = 1.0
 		self.jsspInst = JSSPInstance(fileName)
-		self.ants = self.jsspInst.jobs*2
+		self.ants = int(antX * self.jsspInst.jobs)
 		self.pheromoneStrategy = pheromoneStrategy
 
 		# Initialize greedy values for each job with the whole duration
