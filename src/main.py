@@ -63,7 +63,10 @@ antSys = AntSystem(jsspFile)
 antSys.runCompleteTour(iterations)
 
 if verbose:
-	print "Final solutions:"
+	print "--- TRAIL MATRIX ---"
+	antSys.printTrailMatrix()
+	print "\nGreedy: ", antSys.greedy
+	print "\n--- FINAL SOLUTIONS ---"
 	for i in range(len(antSys.antScheds)):
 		print antSys.antScheds[i].makespan, antSys.antScheds[i].jobSched
 
