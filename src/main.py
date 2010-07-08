@@ -69,7 +69,7 @@ if verbose:
 	print "\n--- FINAL SOLUTIONS ---"
 	for i in range(len(antSys.antScheds)):
 		print antSys.antScheds[i].makespan, antSys.antScheds[i].jobSched
+	print "\nBest solution built:"
+	print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
 
-print "\nBest solution built:"
 print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
-
