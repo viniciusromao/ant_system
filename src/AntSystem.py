@@ -17,6 +17,12 @@ class AntSystem:
 	beta = 0
 	# Evaporation coeficient
 	roh = 0
+	# System parameter used to update pheromone trail
+	Q = 0
+	# System parameter used to initialize pheromone trail
+	Qini = 0
+	# Minimum quantity of pheromone in a trail
+	trailMin = 0
 	# Matrix of Pheromone trails
 	trail=[]
 	# Array with greedy heuristic values for each whole job
@@ -27,22 +33,21 @@ class AntSystem:
 	bestSchedule = 0
 	# JSSP problem instance
 	jsspInst = 0
+	# Selects the strategy to the pheromone increase: 0 - func pheromoneAdd, 1 - func pheromoneAddElitist (default)
+	pheromoneStrategy = 0
 
-	# Minimum quantity of pheromone in a trail
-	trailMin = 0
-	# System parameter
-	Q = 0
-
-	def __init__(self, fileName, alpha = 1, beta = 1, roh = 0.7, Q = 1.0):
-	
+	def __init__(self, fileName, alpha = 1, beta = 1, roh = 0.7, Q = 2.0, pheromoneStrategy = 1):
+		# Initialize default values.
 		self.antScheds=[]
 
 		self.alpha = alpha
 		self.beta = beta
 		self.roh = roh
 		self.Q = Q
+		self.Qini = 1.0
 		self.jsspInst = JSSPInstance(fileName)
 		self.ants = self.jsspInst.jobs
+		self.pheromoneStrategy = pheromoneStrategy
 
 		# Initialize greedy values for each job with the whole duration
 		self.greedy=[]
@@ -50,7 +55,7 @@ class AntSystem:
 			self.greedy.append(sum(self.jsspInst.jobSpan[j]))
 	
 		# Initialize trail matrix
-		self.trailMin = self.Q/sum(self.greedy)
+		self.trailMin = self.Qini/sum(self.greedy)
 		self.trail=[]
 		for i in range(self.jsspInst.jobs):
 			self.trail.append([0.0] * self.jsspInst.jobs)
@@ -115,7 +120,10 @@ class AntSystem:
 
 	def trailUpdate(self):
 		self.pheromoneEvap()
-		self.pheromoneAdd()
+		if self.pheromoneStrategy == 0:
+			self.pheromoneAdd()
+		else:
+			self.pheromoneAddElitist()
 		return
 
 
@@ -134,6 +142,13 @@ class AntSystem:
 		for sched in self.antScheds:
 			for i in range(len(sched.jobSched) - 1):
 				self.trail[sched.jobSched[i]][sched.jobSched[i+1]] += self.Q/sched.makespan
+		return
+	
+	
+	def pheromoneAddElitist(self):
+		sched = self.bestSchedule
+		for i in range(len(sched.jobSched) - 1):
+			self.trail[sched.jobSched[i]][sched.jobSched[i+1]] += self.Q/sched.makespan
 		return
 
 
