@@ -71,5 +71,5 @@ if verbose:
 		print antSys.antScheds[i].makespan, antSys.antScheds[i].jobSched
 	print "\nBest solution built:"
 	print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
-
-print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
+else:
+	print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
