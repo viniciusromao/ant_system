@@ -46,7 +46,7 @@ class AntSystem:
 		self.Q = Q
 		self.Qini = 1.0
 		self.jsspInst = JSSPInstance(fileName)
-		self.ants = self.jsspInst.jobs
+		self.ants = self.jsspInst.jobs*2
 		self.pheromoneStrategy = pheromoneStrategy
 
 		# Initialize greedy values for each job with the whole duration
@@ -75,17 +75,18 @@ class AntSystem:
 		antSched=Schedule(self.jsspInst)
 		# Initialize the roulette, which is a dictionary with JobId and the probability interval: (jobId:[pStart,pEnd])
 		jobRoulette = dict([x, [0.0,0.0]] for x in range(self.jsspInst.jobs))
-		#print jobRoulette
 
-		# Randomize the first job.
-		currJob = int((random.random() * 1000) % self.jsspInst.jobs)
+		# Defining the first job: randomized(70%) or best schedule(30%).
+		if len(self.bestSchedule.jobSched) > 0 and random.random() > 0.7:
+			currJob = self.bestSchedule.jobSched[0]   # The same first position of the last best schedule
+		else:
+			currJob = int((random.random() * 1000) % self.jsspInst.jobs)
 		del jobRoulette[currJob]
 		antSched.addJob(currJob)
 
 		# Select next jobs
 		while (len(jobRoulette) > 0):
 			self.buildRoulette(jobRoulette, currJob)
-			#print jobRoulette
 			
 			bingo = random.random()
 			for jId,prob in jobRoulette.iteritems():
