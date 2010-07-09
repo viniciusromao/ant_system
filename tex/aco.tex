@@ -1,7 +1,7 @@
-\chapter{A otimização combinatória e as colônias de formigas}
+\section{A otimização combinatória e as colônias de formigas}
 \label{chapter:aco}
 
-\section{Introdução}
+\subsection{Introdução}
 
 No início da década de 1990, a otimização combinatória com colônias de formigas
 (ACO, \textit{Ant Colony
@@ -44,7 +44,7 @@ mais curto.
 \end{figure}
 
 
-\section{Otimização combinatória}
+\subsection{Otimização combinatória}
 A otimização combinatória é um ramo da matemática aplicada e da ciência da
 computação que lida com a solução de problemas que podem ser catacterizados
 como possuindo uma estrutura discreta ou combinatória. Estes problemas são
@@ -72,7 +72,7 @@ todas as soluções viáveis. Num problema de maximização, $s^{*}$ seria a sol
 viável com o maior valor da função objetivo $f$, ao passo que, num problema de
 minimização, $s^{*}$ seria a solução viável com o menor valor de $f$.
 
-\section{O que é uma metaheurística?}
+\subsection{O que é uma metaheurística?}
 Uma metaheurística é um conjunto de conceitos algorítmicos que podem ser usados
 para definir métodos heurísticos aplicáveis a uma diversidade de problemas
 \cite{975277}. Uma metaheurística seria então um \textit{framework} algorítmico
@@ -94,7 +94,7 @@ inteligência coletiva, como algoritmos baseados em abelhas
 formigas, \textit{Ant Colony Optimization} (ACO) \cite{dorigo1992optimization},
 que será detalhado na próxima seção.
 
-\section{Otimização combinatória com colônias de formigas - a metaheurística}
+\subsection{Otimização combinatória com colônias de formigas - a metaheurística}
 \label{sec:atsp}
 Algoritmos ACO são procedimentos de busca
 estocástica centrados em um modelo de feromônio, que é usado para tomar
@@ -122,12 +122,7 @@ $X_{i}$ e valor de domínio $v_{i}^{j}$, e o modelo de feromônio $\mathcal{T}$
 consiste de uma trilha de feromônio $\mathcal{T}_{i}^{j}$, com um valor
 $\tau_{i}^{j}$ associado a cada componente de solução $c_{i}^{j}$. 
 
-\subsection{Um framework ACO simples}
-Ao tentar provar as propriedades teóricas para a metaheurística ACO, sua
-generalidade se torna um problema, apesar de ser uma propriedade interessante e
-desejada. O problema é que essa generalidade torna a análise teórica muito mais
-complicada, supondo que seja pelo menos possível \cite{dorigo2005ant}.
-
+\subsubsection{Um framework ACO simples}
 O algoritmo \ref{algo:aco} mostra o \textit{framework} de um algoritmo ACO
 básico, que funciona como segue: A cada iteração, $n_{a}$ formigas
 probabilisticamente constróem soluções para o problema de otimização

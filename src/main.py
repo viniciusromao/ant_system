@@ -138,6 +138,13 @@ def print_latex_table_end():
 	\end{document}'''
 
 
+def print_gnuplot(l, instance):
+	fname = "fig/" + instance + ".dat"
+	f = open(fname, 'w')
+	for i in range(len(l[0].spanList)):
+		line = str((i+1)) + "\t" + str(l[0].spanList[i]) + "\n"
+		f.write(line)
+	f.close()
 
 def print_latex(l, count, ants, instance):
 	if len(l) > 0:
@@ -145,8 +152,6 @@ def print_latex(l, count, ants, instance):
 		for i in l:
 			average += i.span
 		average /= len(l)
-
-		l = sorted(l, key=lambda item: item.span)
 
 		best = l[0]
 		worst = l[-1]
@@ -161,7 +166,7 @@ for inst in jsspFile.split(":"):
 	results = []
 	cont  = 0
 	# Running Ant System Heuristic
-	for i in range(10):
+	for i in range(20):
 		antSys = AntSystem(inst, Q=q, antX=aX)
 		start = time.clock()
 		antSys.runCompleteTour(iterations)
@@ -170,8 +175,10 @@ for inst in jsspFile.split(":"):
 		results.append(r)
 
 	count += 1
-	print_latex(results, count, antSys, os.path.basename(inst).split(".")[0].lower())
-
+	results = sorted(results, key=lambda item: item.span)
+	instance = os.path.basename(inst).split(".")[0].lower()
+	print_latex(results, count, antSys, instance)
+	print_gnuplot(results, instance)
 
 print_latex_table_end()
 

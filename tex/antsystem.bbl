@@ -1,0 +1,104 @@
+\begin{thebibliography}{10}
+
+\bibitem{Cantu-Paz98linkageproblem}
+Erick Cantu-Paz, Martin Pelikan, Martin Pelikan, David~E. Goldberg, and
+  David~E. Goldberg.
+\newblock Linkage problem, distribution estimation, and bayesian networks.
+\newblock Technical report, Evolutionary Computation, 1998.
+
+\bibitem{deb2002fast}
+K.~Deb, A.~Pratap, S.~Agarwal, and T.~Meyarivan.
+\newblock {A fast and elitist multiobjective genetic algorithm: NSGA-II}.
+\newblock {\em IEEE transactions on evolutionary computation}, 6(2):182--197,
+  2002.
+
+\bibitem{deneubourg1990self}
+J.L. Deneubourg, S.~Aron, S.~Goss, and JM~Pasteels.
+\newblock {The self-organizing exploratory pattern of the argentine ant}.
+\newblock {\em Journal of Insect Behavior}, 3(2):159--168, 1990.
+
+\bibitem{dorigo1992optimization}
+M.~Dorigo.
+\newblock {\em {Optimization, learning and natural algorithms (Italian)}}.
+\newblock PhD thesis, Politecnico di Milano, Milan, Italy, 1992.
+
+\bibitem{dorigo2005ant}
+M.~Dorigo and C.~Blum.
+\newblock {Ant colony optimization theory: A survey}.
+\newblock {\em Theoretical Computer Science}, 344(2-3):243--278, 2005.
+
+\bibitem{dorigo1996ant}
+M.~Dorigo, V.~Maniezzo, and A.~Colorni.
+\newblock {Ant system: optimization by a colony of cooperating agents}.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics, Part B:
+  Cybernetics}, 26(1):29--41, 1996.
+
+\bibitem{dorigo1991positive}
+M.~Dorigo, V.~Maniezzo, A.~Colorni, M.~Dorigo, V.~Maniezzo, and A.~Colorni.
+\newblock {Positive feedback as a search strategy}.
+\newblock {\em Dipartimento di Elettronica e Informatica, Politecnico di},
+  1991.
+
+\bibitem{975277}
+Marco Dorigo and Thomas St\"{U}tzle.
+\newblock {\em Ant Colony Optimization}.
+\newblock Bradford Book, 2004.
+
+\bibitem{glover1990tabu}
+F.~Glover.
+\newblock {Tabu search: A tutorial}.
+\newblock {\em Interfaces}, 20(4):74--94, 1990.
+
+\bibitem{glover2003handbook}
+F.~Glover and G.A. Kochenberger.
+\newblock {\em {Handbook of metaheuristics}}.
+\newblock Springer, 2003.
+
+\bibitem{harik1998compact}
+GR~Harik, FG~Lobo, DE~Goldberg, S.G.C. Syst, and M.~View.
+\newblock {The compact genetic algorithm}.
+\newblock In {\em Evolutionary Computation Proceedings, 1998. IEEE World
+  Congress on Computational Intelligence., The 1998 IEEE International
+  Conference on}, pages 523--528, 1998.
+
+\bibitem{karlson1959pheromones}
+P.~Karlson.
+\newblock {Pheromones': a new term for a class of biologically active
+  substances}, 1959.
+
+\bibitem{moon1996expectation}
+TK~Moon.
+\newblock {The expectation-maximization algorithm}.
+\newblock {\em IEEE Signal processing magazine}, 13(6):47--60, 1996.
+
+\bibitem{roth2003termite}
+M.~Roth and S.~Wicker.
+\newblock {Termite: Ad Hoc Networking with Stigmergy}.
+\newblock {\em GLOBECOM-NEW YORK-}, 5:2937--2941, 2003.
+
+\bibitem{Srinivas94multiobjectiveoptimization}
+N.~Srinivas and Kalyanmoy Deb.
+\newblock Multiobjective optimization using nondominated sorting in genetic
+  algorithms.
+\newblock {\em Evolutionary Computation}, 2:221--248, 1994.
+
+\bibitem{teodorovic2005bee}
+D.~Teodorovi{\'c} and M.~Dell’Orco.
+\newblock {Bee colony optimization--a cooperative learning approach to complex
+  transportation problems}.
+\newblock In {\em Advanced OR and AI Methods in Transportation. Proceedings of
+  the 10th Meeting of the EURO Working Group on Transportation, Poznan,
+  Poland}, pages 51--60. Citeseer, 2005.
+
+\bibitem{zitzler2001spea2}
+E.~Zitzler, M.~Laumanns, L.~Thiele, et~al.
+\newblock {SPEA2: Improving the strength Pareto evolutionary algorithm}.
+\newblock In {\em EUROGEN}, pages 95--100. Citeseer, 2001.
+
+\bibitem{zitzler1998evolutionary}
+E.~Zitzler and L.~Thiele.
+\newblock {An evolutionary algorithm for multiobjective optimization: The
+  strength pareto approach}.
+\newblock {\em Swiss Federal Institute of Technology, TIK-Report}, 43, 1998.
+
+\end{thebibliography}

@@ -1,19 +1,8 @@
-\section{Resultados}
-
-As instâncias do problema do FlowShop utilizadas com a metaheurística ACO foram
-as seguintes
-
-
-\begin{figure}[htp]
-  \begin{center}
-    \subfigure[abz5]{\label{fig:edge-a}\includegraphics[scale=0.60]{fig/abz5.pdf}}
-    \subfigure[car5]{\label{fig:edge-b}\includegraphics[scale=0.60]{fig/car5.pdf}}
-    \\
-  \end{center}
-  \caption{Convergência do algoritmo Ant-System para as instâncias abz5 e car5}
-  \label{fig:edge}
-\end{figure}
-
+\documentclass{article}
+	\usepackage{multirow}
+	\usepackage[utf8]{inputenc}
+	\usepackage{amssymb}
+	\begin{document}
 	\begin{table}
 	\centering
 	\begin{tabular}{c|c|c|c||c||c|c|c||c}
@@ -23,8 +12,8 @@ as seguintes
 	\hline
 	Nº &  Referência & m & n & ``Ótima'' & Inicial & tempo (s) & Melhor & Gap\\
 	\hline\hline
-	1 & abz5 & 10 & 10 & 1544 & 1592 & 19.7 & 1538 & 0.99611399\\
-	2 & car5 & 10 & 6 & 7720 & 8279 & 16.8 & 7720 & 1.0\\
+	1 & Abz5 & 10 & 10 & 1544 & 1592 & 19.7 & 1538 & 0.99611399\\
+	2 & Car5 & 10 & 6 & 7720 & 8279 & 16.8 & 7720 & 1.0\\
 	\hline\hline
 	\multicolumn{8}{r||}{Média das aproximações com resultados conhecidos
 	$\rightarrowtail$} & 0.998056995	\\
@@ -54,3 +43,4 @@ as seguintes
 	\hline\hline
 	\end{tabular}
 	\end{table}
+	\end{document}
