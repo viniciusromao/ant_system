@@ -18,7 +18,7 @@ class AntSystem_test (unittest.TestCase):
 		self.assert_(antSys.alpha == 1, "Init alpha = %i" % antSys.alpha)
 		self.assert_(antSys.beta == 1, "Init beta = %i" % antSys.beta)
 		self.assert_(antSys.roh == 0.7, "Init roh = %i" % antSys.roh)
-		self.assert_(antSys.Q == 1.0, "Init Q = %i" % antSys.Q)
+		self.assert_(antSys.Q == 2.0, "Init Q = %i" % antSys.Q)
 	
 		self.assert_(antSys.greedy==[18,14,17], "Greedy values: %s" % antSys.greedy)
 
@@ -53,7 +53,7 @@ class AntSystem_test (unittest.TestCase):
 		antSys = AntSystem("../jssp_instances/Car5.txt")
 		#antSys = AntSystem("../jssp_instances/abz5.txt", roh = 0.9)
 
-		antSys.runCompleteTour(3000)
+		antSys.runCompleteTour(100)
 		
 		print "final solutions"
 		for i in range(len(antSys.antScheds)):
