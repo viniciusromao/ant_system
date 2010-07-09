@@ -35,6 +35,8 @@ class AntSystem:
 	jsspInst = 0
 	# Selects the strategy to the pheromone increase: 0 - func pheromoneAdd, 1 - func pheromoneAddElitist (default)
 	pheromoneStrategy = 0
+	# best solutions found after every iteration
+	spanList = []
 
 	def __init__(self, fileName, alpha = 1, beta = 1, roh = 0.7, Q = 2.0, antX = 2, pheromoneStrategy = 1):
 		# Initialize default values.
@@ -48,6 +50,7 @@ class AntSystem:
 		self.jsspInst = JSSPInstance(fileName)
 		self.ants = int(antX * self.jsspInst.jobs)
 		self.pheromoneStrategy = pheromoneStrategy
+		self.spanList = []
 
 		# Initialize greedy values for each job with the whole duration
 		self.greedy=[]
@@ -160,6 +163,7 @@ class AntSystem:
 				self.antTour()
 			self.findBestJobSchedule()
 			self.trailUpdate()
+			self.spanList.append(self.bestSchedule.makespan)
 		return
 
 

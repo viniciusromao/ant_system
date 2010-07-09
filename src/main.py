@@ -1,8 +1,11 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 import sys
 import getopt
 from AntSystem import *
+import time
+
 
 #------------------------------ Global Variables -------------------------------
 # Command line options
@@ -12,14 +15,19 @@ iterations = 0
 q = 2.0
 # Ants multiplicative factor
 aX = 2
-
+# number of runs
+runs = 10
 jsspFile = ""
+instance = ""
 verbose = False
+# instance count
+count = 0
 
 #--------------------------------- Functions -----------------------------------
 def printUsage ():
 	print """
 command: main [-h -n] <JSSP Instance file>
+
 params:
 	-h Help
 	-n Interations
@@ -38,7 +46,7 @@ example:
 
 # Command line options
 try:
-	opts, args = getopt.getopt(sys.argv[1:], "hn:Q:a:v")
+	opts, args = getopt.getopt(sys.argv[1:], "hn:Q:a:v:r")
 except getopt.GetoptError, err:
 	# print help information and exit:
 	print str(err)
@@ -47,15 +55,17 @@ except getopt.GetoptError, err:
 
 # Validate JSSP file
 if len(args) != 1:
-	print "[Error] JSSP instace input file!"
+	print "[Error] JSSP instance input file!"
 	printUsage()
 	sys.exit(2)
 else:
 	jsspFile = args[0]
-	if os.path.isfile(jsspFile) == False:
-		print "[Error] Argument is not a file: " + f
-		printUsage()
-		sys.exit(2)
+#	if os.path.isfile(jsspFile) == False:
+#		print "[Error] Argument is not a file: " + f
+#		printUsage()
+#		sys.exit(2)
+
+
 # Options
 for o, a in opts:
 	if o == "-n":
@@ -66,23 +76,102 @@ for o, a in opts:
 		aX = float(a)
 	elif o == "-v":
 		verbose = True
+	elif o == "-r":
+		runs = int(a)
 	else:
 		printUsage()
 		sys.exit(2)
 
-# Running Ant System Heuristic
-antSys = AntSystem(jsspFile, Q=q, antX=aX)
 
-antSys.runCompleteTour(iterations)
+### results
+class Result:
+	span = 0
+	dtime = 0
+	spanList = []
+	
+	def __init__(self, span, dtime, spanList):
+		self.span = int(span)
+		self.dtime = dtime
+		self.spanList = spanList 
 
-if verbose:
-	print "--- TRAIL MATRIX ---"
-	antSys.printTrailMatrix()
-	print "\nGreedy: ", antSys.greedy
-	print "\n--- FINAL SOLUTIONS ---"
-	for i in range(len(antSys.antScheds)):
-		print antSys.antScheds[i].makespan, antSys.antScheds[i].jobSched
-	print "\nBest solution built:"
-	print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
-else:
-	print antSys.bestSchedule.makespan, antSys.bestSchedule.jobSched
+	def __str__(self):
+		return "[" + str(self.spanList) + "; " + str(self.span) + "; " + str(self.dtime) + "]"
+
+	def __repr__(self):
+		return self.__str__()
+
+### latex
+
+def print_latex_preamble():
+	print r'''\documentclass{article}
+	\usepackage{multirow}
+	\usepackage[utf8]{inputenc}
+	\usepackage{amssymb}
+	\begin{document}'''
+
+	return
+
+
+def print_latex_table_beginning():
+	print r'''	\begin{table}
+	\begin{tabular}{c|c|c|c||c||c|c|c||c}
+	\hline\hline
+	\multicolumn{4}{c||}{Instâncias Comparativas} & Solução 
+	& \multicolumn{3}{|c||}{Solução Obtida} & Aproximação\\
+	\hline
+	Nº &  Referência & m & n & ``Ótima'' & Inicial & tempo (s) & Melhor & Gap\\
+	\hline\hline
+	1 & Abz5 & 10 & 10 & 1544 &  &  &  & \\
+	2 & Car5 & 10 & 6 & 7720 & & & &\\
+	\hline\hline
+	\multicolumn{8}{r||}{Média das aproximações com resultados conhecidos
+	$\rightarrowtail$} &
+	\\
+	\hline\hline
+	Nº &  Referência & m & n & Inicial & Máxima & Média & Melhor & tempo (s)\\
+	\hline\hline'''
+
+def print_latex_table_end():
+	print r'''	\hline\hline
+	\end{tabular}
+	\end{table}
+	\end{document}'''
+
+
+
+def print_latex(l, count, ants, instance):
+	if len(l) > 0:
+		average = 0
+		for i in l:
+			average += i.span
+		average /= len(l)
+
+		l = sorted(l, key=lambda item: item.span)
+
+		best = l[0]
+		worst = l[-1]
+		print '\t', count, "&",  instance, "&", ants.jsspInst.jobs, "&", ants.jsspInst.machines, "&", best.spanList[0], "&", worst.span, "&", average, "&", best.span, "&", best.dtime, r'\\'
+	return
+
+
+print_latex_preamble()
+print_latex_table_beginning()
+
+for inst in jsspFile.split(":"):
+	results = []
+	cont  = 0
+	# Running Ant System Heuristic
+	for i in range(10):
+		antSys = AntSystem(inst, Q=q, antX=aX)
+		start = time.clock()
+		antSys.runCompleteTour(iterations)
+		end = time.clock()
+		r = Result(antSys.bestSchedule.makespan, 10 * (end - start), antSys.spanList)
+		results.append(r)
+
+	count += 1
+	print_latex(results, count, antSys, os.path.basename(inst).split(".")[0].lower())
+
+
+print_latex_table_end()
+
