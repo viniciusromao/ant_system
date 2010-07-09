@@ -1,0 +1,25 @@
+\section{Problema de sequenciamento de tarefas (\textit{Shop Scheduling}).}
+O problema consiste em alocar da forma mais otimizada possível um conjunto de tarejas sobre um 
+conjunto de máquinas de forma a minimizar o tempo total gasto, \textit{makespan}, para concluí-las.
+Existem três categoria de problemas de sequenciamento:
+\begin{itemize}
+\item \textit{Job Shop:} cada tarefa tem sua própria sequencia de processamento passando pelas m máquinas.
+\item \textit{Flow Shop:} todas as tarefas têm a mesma ordem de processamento.
+\item \textit{Open Shop:} não há uma sequencia preestabelicida para o processamento das tarefas.
+\end{itemize}
+O trabalho aborda problemas de \textit{Flow Shop Scheduling} (FSSP).
+
+
+\subsection{Problema Flow Shop Scheduling.}
+As características do problema:
+\begin{itemize}
+\item Realizar $m$ tarefas: J1, J2, ... , Jm (produzir fios), sendo que:
+\item Cada tarefa será processada em cada uma das $n$ máquinas: M1,..., Mn
+\item O fluxo de processamento das $m$ tarefas nas $n$ máquinas é o mesmo para todas as tarefas.
+\item Uma máquina processa apenas uma operação de cada vez, e não deve ser interrompida até sua conclusão.
+\item São conhecidos os tempos de processamento de cada tarefa por máquina.
+\end{itemize}
+O objetivo é minimizar o tempo de conclusão de todas as tarefas (\textit{makespan}). O espaço de soluções
+do problema é $m!$. Esta ordem de complexidade motiva o uso de meta-heurísticas para solucioná-lo.
+
+
